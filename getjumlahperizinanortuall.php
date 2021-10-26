@@ -2,23 +2,6 @@
   require_once('connection.php'); 
     
     $id = $_POST['ortuid'];
-    
-    // $sql = "SELECT k. *
-    // FROM kegiatanuks k
-    // INNER JOIN periodeajaran pa ON pa.id = k.periodeajaran_id
-    // WHERE k.perizinan =1
-    // AND for_all =1
-    // AND pa.status =1
-    // AND NOT
-    // EXISTS (
-    
-    // SELECT *
-    // FROM perizinan p
-    // INNER JOIN siswa s ON s.id = p.siswa_id
-    // WHERE k.id = p.kegiatanuks_id
-    // AND s.id =?
-    // GROUP BY s.id
-    // )";
 
     $sql = "SELECT count(*) as jumlah
     FROM kegiatanuks k

@@ -2,28 +2,6 @@
   require_once('connection.php'); 
     
     $id = $_POST['ortuid'];
-    // $id = $_POST['siswaid'];
-    // $sql = "SELECT count( * ) as jumlah
-    // FROM siswa s
-    // INNER JOIN kelassiswa ks ON ks.siswa_id = s.id
-    // RIGHT JOIN (
-    // SELECT k. *
-    // FROM Kegiatanuks k
-    // WHERE NOT
-    // EXISTS (
-    // SELECT *
-    // FROM perizinan p
-    // WHERE p.kegiatanuks_id = k.id
-    // ))d 
-    // ON ks.kelasajaran_id = d.kelasajaran_id
-    // WHERE ks.status =1 AND d.perizinan =1 
-    // AND ks.kelasAjaran_id
-    //     IN ( SELECT ks.kelasAjaran_id
-    //     FROM siswa s
-    //     INNER JOIN orangtua o ON o.id = s.orangtua_id
-    //     INNER JOIN kelassiswa ks ON s.id = ks.siswa_id
-    //     WHERE o.id =?
-    //     AND ks.status =1) ";
 
     $sql = "SELECT count(*) as jumlah
     FROM kegiatanuks k
