@@ -13,8 +13,8 @@ if ($result->num_rows > 0) {
 }
 
 $siswaid = $_POST['siswaid'];
-$sql ="SELECT *
-FROM kegiatanuks k
+$sql ="SELECT k.*, j.nama as jenis
+FROM kegiatanuks k inner join jeniskegiatan j on j.id = k.jeniskegiatan_id
 WHERE k.for_all =1
 AND k.tanggal_acara >= now( )
 AND periodeajaran_id ='$periode'
