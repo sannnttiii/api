@@ -1,7 +1,7 @@
 <?php
   require_once('connection.php'); 
 
-    $sql = "SELECT o.user_token, o.id, s.nama, ka.kelas, p.tahunAjaran, o.token_device as device
+    $sql = "SELECT o.user_token, o.id,s.id as idsiswa, s.nama, ka.kelas, p.tahunAjaran, o.token_device as device
     FROM kelassiswa ks
     INNER JOIN siswa s ON s.id = ks.siswa_id
     INNER JOIN orangtua o ON s.orangtua_id = o.id
@@ -22,6 +22,7 @@
             $array[$i]['tokendevice'] = addslashes(htmlentities($row['device']));
             $array[$i]['ortuid'] = addslashes(htmlentities($row['id']));
             $array[$i]['namasiswa'] = addslashes(htmlentities($row['nama']));
+            $array[$i]['idsiswa'] = addslashes(htmlentities($row['idsiswa']));
             $array[$i]['kelas'] = addslashes(htmlentities($row['kelas']));
             $array[$i]['periode'] = addslashes(htmlentities($row['tahunAjaran']));
             $i++;

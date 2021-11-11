@@ -4,15 +4,16 @@ require_once('connection.php');
 $id = $_POST['ortuid'];
 $tokendevice = $_POST['tokendevice'];
 
-$sql = "UPDATE orangtua set token_device = '$tokendevice' WHERE id='$id'";
+$sql = "UPDATE orangtua set token_device ='$tokendevice' WHERE id='$id'";
 $stmt = $c->prepare ($sql);
+// $stmt->bind_param("si", $tokendevice,$id);
 $stmt->execute();
 if($stmt->affected_rows) {
     $arr_hasil = array("status"=>true,
-    "pesan"=> 'Berhasil update token device '+ $tokendevice);
+    "pesan"=> 'Berhasil update token device ');
 } else {
     $arr_hasil = array("status"=>false, 
-    "pesan"=>'Gagal Update token device '+$tokendevice);
+    "pesan"=>'Gagal Update token device ');
 }
 echo json_encode($arr_hasil);
 

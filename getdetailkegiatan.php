@@ -1,8 +1,8 @@
 <?php
   require_once('connection.php'); 
-    
+    $datenow =  date("Y-m-d H:i:s");
     $id = $_POST['id'];
-    $sql = "SELECT k.*, j.id as jenisid from kegiatanuks k inner join jeniskegiatan  j on k.jeniskegiatan_id = j.id where k.id = ? ";
+    $sql = "SELECT k.*, j.id as jenisid, IF( tanggal_acara <= now( ) , 'done', 'undone' ) AS selesai from kegiatanuks k inner join jeniskegiatan  j on k.jeniskegiatan_id = j.id where k.id = ? ";
     $stmt = $c->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -16,7 +16,7 @@
             $array[$i]['tanggal'] = addslashes(htmlentities($row['tanggal_acara']));
             $array[$i]['pelaksana'] = addslashes(htmlentities($row['pelaksana']));
             $array[$i]['jenisid'] = addslashes(htmlentities($row['jenisid']));
-
+            $array[$i]['selesai'] = addslashes(htmlentities($row['selesai']));
             $i++;
         }
         echo json_encode(array("status" => true, "pesan" => $array));
