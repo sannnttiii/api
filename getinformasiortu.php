@@ -14,7 +14,9 @@
     INNER JOIN kelassiswa ks ON s.id = ks.siswa_id
     WHERE o.id =? 
     AND ks.status =1) 
-    AND ks.status =1 ";
+    AND ks.status =1 
+    ORDER BY i.tanggal_buat DESC
+    LIMIT 5";
     $stmt = $c->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();

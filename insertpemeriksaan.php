@@ -5,8 +5,15 @@ $tinggi= $_POST['tinggi'];
 $berat = $_POST['berat'];
 $siswaid = (int)$_POST['siswaid'];
 $kegiatanid = (int)$_POST['kegiatanid'];
-$hasil = $_POST['hasil'];
-$catatan = $_POST['catatan'];
+$hasil=NULL;
+$catatan = NULL;
+if(isset ($_POST['hasil']) ){
+  $hasil = $_POST['hasil'];
+}
+if(isset ($_POST['catatan']))
+{
+  $catatan = $_POST['catatan'];
+}
 $periodeid =0;
 $kelasajaranid= 0;
 

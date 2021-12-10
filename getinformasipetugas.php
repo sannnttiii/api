@@ -1,7 +1,7 @@
 <?php
   require_once('connection.php'); 
     
-    $sql = "SELECT * from informasi GROUP BY judul, keterangan";
+    $sql = "SELECT * from informasi GROUP BY judul, keterangan ORDER BY tanggal_buat DESC LIMIT 5";
     $stmt = $c->prepare($sql);
     $stmt->execute();
     $result = $stmt->get_result();

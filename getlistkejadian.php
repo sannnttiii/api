@@ -3,7 +3,7 @@
     
     $id = $_POST['siswaid'];
     $period = $_POST['periodeid'];
-    $sql = "SELECT id,kejadian, tanggal,jenis_penanganan, jam_penanganan, catatan,ditangani_oleh,is_confirm
+    $sql = "SELECT id,kejadian, tanggal,is_confirm
     FROM laporankejadian
     WHERE siswa_id = ? and periodeAjaran_id =?";
     $stmt = $c->prepare($sql);
@@ -18,10 +18,10 @@
           $array[$i]['id'] = addslashes(htmlentities($row['id']));
             $array[$i]['kejadian'] = addslashes(htmlentities($row['kejadian']));
             $array[$i]['tanggal'] = addslashes(htmlentities($row['tanggal']));
-            $array[$i]['penanganan'] = addslashes(htmlentities($row['jenis_penanganan']));
-            $array[$i]['ditangani'] = addslashes(htmlentities($row['ditangani_oleh']));
-            $array[$i]['jam'] = addslashes(htmlentities($row['jam_penanganan']));
-            $array[$i]['catatan'] = addslashes(htmlentities($row['catatan']));
+            // $array[$i]['penanganan'] = addslashes(htmlentities($row['jenis_penanganan']));
+            // $array[$i]['ditangani'] = addslashes(htmlentities($row['ditangani_oleh']));
+            // $array[$i]['jam'] = addslashes(htmlentities($row['jam_penanganan']));
+            // $array[$i]['catatan'] = addslashes(htmlentities($row['catatan']));
             $array[$i]['confirm'] = addslashes(htmlentities($row['is_confirm']));
 
             $i++;

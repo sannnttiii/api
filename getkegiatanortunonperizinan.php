@@ -1,12 +1,24 @@
 <?php
   require_once('connection.php'); 
     
-    $sql = "SELECT k.id, k.nama, k.pelaksana, k.tanggal_acara, j.nama AS jenis, k.perizinan
+    $id = $_POST['ortuid'];
+    $sql = "SELECT k. *
     FROM kegiatanuks k
     INNER JOIN jeniskegiatan j ON j.id = k.jeniskegiatan_id
-    GROUP BY nama, tanggal_acara
-    ORDER BY tanggal_acara DESC";
+    WHERE k.tanggal_acara >= now( )
+    AND k.perizinan =0
+    AND k.for_all =1
+    OR k.perizinan =0
+    AND k.kelasajaran_id = (
+    SELECT k.kelasajaran_id
+    FROM kelassiswa ks
+    INNER JOIN siswa s ON s.id = ks.siswa_id
+    INNER JOIN orangtua o ON o.id = s.orangtua_id
+    WHERE o.id =?
+    AND ks.status =1 )";
+
     $stmt = $c->prepare($sql);
+    $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -17,14 +29,14 @@
             $array[$i]['id'] = addslashes(htmlentities($row['id']));
             $array[$i]['nama'] = addslashes(htmlentities($row['nama']));
             $array[$i]['tanggal'] = addslashes(htmlentities($row['tanggal_acara']));
-            $array[$i]['pelaksana'] = addslashes(htmlentities($row['pelaksana']));
             $array[$i]['jenis'] = addslashes(htmlentities($row['jenis']));
-            $array[$i]['perizinan'] = addslashes(htmlentities($row['perizinan']));
+            $array[$i]['pelaksana'] = addslashes(htmlentities($row['pelaksana']));
+
             $i++;
         }
         echo json_encode(array("status" => true, "pesan" => $array));
       } else {
-        echo json_encode(array("status" => false, "pesan" => "Tidak ada data kegiatan"));
+        echo json_encode(array("status" => false, "pesan" => "Tidak ada data kegiatan untuk semua yang perlu perizinan"));
         die();
       }
 ?>

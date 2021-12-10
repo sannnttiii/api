@@ -12,7 +12,7 @@ if ($result->num_rows > 0) {
   }
 }
 
-$sql = "SELECT s.*,k.kelasajaran_id as kelasid, o.user_token as token, o.token_device as device from laporankejadian l inner join siswa s on l.siswa_id = s.id inner join kelassiswa k on k.siswa_id = s.id inner join orangtua o on o.id =s.orangtua_id where l.is_confirm = 1 and k.status = 1 and l.periodeajaran_id = '$periode'";
+$sql = "SELECT s.*,k.kelasajaran_id as kelasid, o.user_token as token, o.token_device as device from laporankejadian l inner join siswa s on l.siswa_id = s.id inner join kelassiswa k on k.siswa_id = s.id inner join orangtua o on o.id =s.orangtua_id where l.is_confirm = 1 and k.status = 1 and l.periodeajaran_id = '$periode' group by s.id";
 $stmt = $c->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
