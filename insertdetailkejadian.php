@@ -2,7 +2,11 @@
 require_once('connection.php'); 
 
 $kejadianid = (int)$_POST['kejadianid'];
-$catatan = $_POST['catatan'];
+$catatan=NULL;
+if(isset($_POST['catatan']))
+{
+  $catatan = $_POST['catatan'];
+}
 
 //untuk panggilan
 if(!isset($_POST['tanggal']))
@@ -29,7 +33,7 @@ else{
 $ditangani = $_POST['ditangani'];
 $jam = $_POST['tanggal'];
 
-if(isset($foto))
+if(!isset($foto))
 {
   $sql = "INSERT INTO detailkejadian (kejadian_id, jenis_penanganan, jam_penanganan, ditangani_oleh, catatan) values (?,?,?,?,?)";
   $stmt = $c->prepare($sql);

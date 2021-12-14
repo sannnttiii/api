@@ -2,7 +2,8 @@
   require_once('connection.php'); 
     
     $id = $_POST['kejadianid'];
-    $sql = "SELECT d.*,l.kejadian, l.tanggal from detailkejadian d inner join laporankejadian l on l.id = d.kejadian_id where d.kejadian_id = ? ";
+    $sql = "SELECT d.*,l.kejadian, l.tanggal from detailkejadian d inner join laporankejadian l on l.id = d.kejadian_id where d.kejadian_id = ? 
+    ORDER BY jam_penanganan DESC";
     $stmt = $c->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();

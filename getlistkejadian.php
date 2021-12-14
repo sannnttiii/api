@@ -5,7 +5,7 @@
     $period = $_POST['periodeid'];
     $sql = "SELECT id,kejadian, tanggal,is_confirm
     FROM laporankejadian
-    WHERE siswa_id = ? and periodeAjaran_id =?";
+    WHERE siswa_id = ? and periodeAjaran_id =? ORDER BY tanggal DESC";
     $stmt = $c->prepare($sql);
     $stmt->bind_param("ii", $id, $period);
     $stmt->execute();
