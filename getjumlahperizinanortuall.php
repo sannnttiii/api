@@ -36,7 +36,7 @@
     FROM perizinan p
     INNER JOIN siswa s ON s.id = p.siswa_id
     WHERE k.id = p.kegiatanuks_id
-    AND s.id = ?
+    AND s.id = ? 
     )";
 
     $stmt = $c->prepare($sql);

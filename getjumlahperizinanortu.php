@@ -26,9 +26,9 @@
     FROM kegiatanuks k
     INNER JOIN periodeajaran pa ON pa.id = k.periodeajaran_id
     WHERE k.tanggal_acara >= now()  AND k.perizinan =1
-    AND k.kelasajaran_id in (select ks.kelasajaran_id from siswa s 
+    AND k.kelasajaran_id = (select ks.kelasajaran_id from siswa s 
     inner join kelassiswa ks on ks.siswa_id = s.id 
-    where ks.status = 1 and s.id in (select s.id from siswa s inner join orangtua o on o.id = s.orangtua_id where o.id = ?))  
+    where ks.status = 1 and s.id  = ?)  
     AND pa.status =1
     AND NOT
     EXISTS (
@@ -36,7 +36,7 @@
     FROM perizinan p
     INNER JOIN siswa s ON s.id = p.siswa_id
     WHERE k.id = p.kegiatanuks_id
-    AND s.id =?
+    AND s.id =? GROUP BY s.id
     )";
     $stmt = $c->prepare($sql);
     $stmt->bind_param("ii", $id, $id);
