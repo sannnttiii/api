@@ -8,7 +8,11 @@ $kelasajaranid = (int)$_POST['kelasajaranid'];
 $periodeajaranid = (int)$_POST['periodeajaranid'];
 $tidakacc='Tidak';
 
-$image = $_POST['image'];
+
+if(isset($_POST['image']))
+{
+    $image = $_POST['image'];
+}
 $alasan = $_POST['alasan'];
 
 $array = explode('.', $_FILES['image']['name']);
@@ -21,13 +25,15 @@ $stmt->bind_param("ssiiiii", $tidakacc, $alasan, $ortuid, $kegiatanid, $siswaid,
 $stmt->execute();
 $lastid = $stmt->insert_id;
 
+if(isset($_POST['image']))
+{
 $url=$lastid.'.'.$ext;
 $uploadPath = "./images/".$url;
 move_uploaded_file($tmp_name, $uploadPath);
 $sql1 = "UPDATE perizinan set foto_bukti ='$url' WHERE id='$lastid' ";
 $stmt = $c->prepare ($sql1);
 $stmt->execute();
-
+}
 if($stmt->affected_rows>0) {
     $arr_hasil = array("status"=>true,
     "pesan"=> "Berhasil Konfirmasi Perizinan");
