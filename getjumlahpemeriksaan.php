@@ -1,11 +1,13 @@
 <?php
   require_once('connection.php'); 
     
-    $id = $_POST['ortuid'];
-    $sql ="SELECT count(*) as jumlah FROM laporanpemeriksaan WHERE siswa_id in 
-    (select s.id from orangtua o inner join siswa s on o.id = s.orangtua_id where o.id =? ) 
+    // $id = $_POST['ortuid'];
+    // $sql ="SELECT count(*) as jumlah FROM laporanpemeriksaan WHERE siswa_id in 
+    // (select s.id from orangtua o inner join siswa s on o.id = s.orangtua_id where o.id =? ) 
+    // and is_confirm = 0";
+    $id = $_POST['siswaid'];
+    $sql ="SELECT count(*) as jumlah FROM laporanpemeriksaan WHERE siswa_id =? 
     and is_confirm = 0";
-
     $stmt = $c->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();

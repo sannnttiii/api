@@ -2,7 +2,7 @@
   require_once('connection.php'); 
     
     $id = $_POST['siswaid'];
-    $sql = "SELECT s.id, s.nama, k.kelas, p.tahunajaran, ks.kelasajaran_id, p.id as pid, o.token_device
+    $sql = "SELECT s.id, s.jenis_kelamin, s.nama, k.kelas, p.tahunajaran, ks.kelasajaran_id, p.id as pid, o.token_device
     FROM kelassiswa ks inner join siswa s on ks.siswa_id = s.id
     INNER JOIN kelasajaran k ON k.id = ks.kelasajaran_id
     INNER JOIN periodeajaran p ON p.id = ks.periodeajaran_id
@@ -24,7 +24,8 @@
             $array[$i]['kelasid'] = addslashes(htmlentities($row['kelasajaran_id']));
             $array[$i]['periodeid'] = addslashes(htmlentities($row['pid']));
             $array[$i]['tokendevice'] = addslashes(htmlentities($row['token_device']));
-
+            $array[$i]['jk'] = addslashes(htmlentities($row['jenis_kelamin']));
+            
             $i++;
         }
         echo json_encode(array("status" => true, "pesan" => $array));

@@ -1,6 +1,5 @@
 <?php
-  require_once('connection.php'); 
-    $id = $_POST['ortuid'];
+  require_once('connection.php');
     
     $sql = "SELECT k.id, k.pelaksana, k.tanggal_acara, k.nama, j.nama AS jenis, ka.kelas, DATEDIFF( k.tanggal_acara, CURDATE( ) ) AS jarak
     FROM kegiatanuks k
@@ -8,22 +7,6 @@
     LEFT join kelasajaran ka on ka.id = k.kelasajaran_id
     WHERE CURDATE( ) <= k.tanggal_acara
     AND DATEDIFF( k.tanggal_acara, CURDATE( ) ) <= 7 
-    and for_all =1 
-    OR 
-    CURDATE( ) <= k.tanggal_acara
-    AND DATEDIFF( k.tanggal_acara, CURDATE( ) ) <= 7
-   and for_all = 0 and k.kelasajaran_id in(SELECT ks.kelasajaran_id
-FROM siswa s
-INNER JOIN kelassiswa ks ON ks.siswa_id = s.id
-WHERE ks.status =1
-AND s.id
-IN (
-
-SELECT s.id
-FROM siswa s
-INNER JOIN orangtua o ON o.id = s.orangtua_id
-WHERE o.id ='$id'
-))
     GROUP BY k.nama, k.tanggal_acara
     ORDER BY jarak";
     $stmt = $c->prepare($sql);

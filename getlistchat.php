@@ -1,7 +1,7 @@
 <?php
   require_once('connection.php'); 
 
-    $sql = "SELECT a . * , s.nama, o.user_token, o.token_device as device, b.jumlah
+    $sql = "SELECT a . * , s.nama, o.user_token, o.nama_ibu, o.token_device as device, b.jumlah
     FROM (
     SELECT c . *
     FROM chat c
@@ -38,6 +38,8 @@
             $array[$i]['usertoken'] = addslashes(htmlentities($row['user_token']));
             $array[$i]['tokendevice'] = addslashes(htmlentities($row['device']));
             $array[$i]['jumlah'] = addslashes(htmlentities($row['jumlah']));
+            $array[$i]['ibu'] = addslashes(htmlentities($row['nama_ibu']));
+
             $i++;
         }
         echo json_encode($array);

@@ -1,7 +1,26 @@
 <?php
   require_once('connection.php'); 
     
-    $id = $_POST['ortuid'];
+    // $id = $_POST['ortuid'];
+
+    // $sql = "SELECT count(*) as jumlah
+    // FROM kegiatanuks k
+    // INNER JOIN periodeajaran pa ON pa.id = k.periodeajaran_id
+    // WHERE k.tanggal_acara >= now()
+    // and k.perizinan =1
+    // AND for_all =1
+    // AND pa.status =1
+    // AND NOT
+    // EXISTS (
+    
+    // SELECT *
+    // FROM perizinan p
+    // INNER JOIN siswa s ON s.id = p.siswa_id
+    // WHERE k.id = p.kegiatanuks_id
+    // AND s.id in (select s.id from siswa s inner join orangtua o on o.id = s.orangtua_id where o.id = ?)
+    // GROUP BY s.id
+    // )";
+    $id = $_POST['siswaid'];
 
     $sql = "SELECT count(*) as jumlah
     FROM kegiatanuks k
@@ -17,8 +36,7 @@
     FROM perizinan p
     INNER JOIN siswa s ON s.id = p.siswa_id
     WHERE k.id = p.kegiatanuks_id
-    AND s.id in (select s.id from siswa s inner join orangtua o on o.id = s.orangtua_id where o.id = ?)
-    GROUP BY s.id
+    AND s.id = ?
     )";
 
     $stmt = $c->prepare($sql);

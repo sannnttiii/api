@@ -17,6 +17,8 @@
             $array[$i]['idsiswa'] = addslashes(htmlentities($row['id']));
             $array[$i]['nama'] = addslashes(htmlentities($row['nama']));
             $array[$i]['nisn'] = addslashes(htmlentities($row['nisn']));
+            $array[$i]['jk'] = addslashes(htmlentities($row['jenis_kelamin']));
+
             $i++;
         }
         echo json_encode(array("status" => true, "pesan" => $array));

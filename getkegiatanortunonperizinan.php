@@ -1,7 +1,22 @@
 <?php
   require_once('connection.php'); 
     
-    $id = $_POST['ortuid'];
+    // $id = $_POST['ortuid'];
+    // $sql = "SELECT k. *
+    // FROM kegiatanuks k
+    // INNER JOIN jeniskegiatan j ON j.id = k.jeniskegiatan_id
+    // WHERE k.tanggal_acara >= now( )
+    // AND k.perizinan =0
+    // AND k.for_all =1
+    // OR k.perizinan =0
+    // AND k.kelasajaran_id = (
+    // SELECT k.kelasajaran_id
+    // FROM kelassiswa ks
+    // INNER JOIN siswa s ON s.id = ks.siswa_id
+    // INNER JOIN orangtua o ON o.id = s.orangtua_id
+    // WHERE o.id =?
+    // AND ks.status =1 )";
+    $id = $_POST['siswaid'];
     $sql = "SELECT k. *
     FROM kegiatanuks k
     INNER JOIN jeniskegiatan j ON j.id = k.jeniskegiatan_id
@@ -13,8 +28,7 @@
     SELECT k.kelasajaran_id
     FROM kelassiswa ks
     INNER JOIN siswa s ON s.id = ks.siswa_id
-    INNER JOIN orangtua o ON o.id = s.orangtua_id
-    WHERE o.id =?
+    WHERE s.id =?
     AND ks.status =1 )";
 
     $stmt = $c->prepare($sql);
