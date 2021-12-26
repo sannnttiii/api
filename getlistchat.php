@@ -1,6 +1,7 @@
 <?php
   require_once('connection.php'); 
 
+  $id = $_POST['petugasid'];
     $sql = "SELECT a . * , s.nama, o.user_token, o.nama_ibu, o.token_device as device, b.jumlah
     FROM (
     SELECT c . *
@@ -15,7 +16,7 @@
     LEFT JOIN (
     SELECT orangtua_id, count( pesan ) AS jumlah
     FROM chat
-    WHERE petugasuks_id =1
+    WHERE petugasuks_id ='$id'
     AND pengirim =0
     AND is_read =0
     GROUP BY orangtua_id

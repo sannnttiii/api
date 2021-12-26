@@ -15,8 +15,8 @@
             $array[$i]['idortu'] = addslashes(htmlentities($row['id']));
             $array[$i]['namaayah'] = addslashes(htmlentities($row['nama_ayah']));
             $array[$i]['namaibu'] = addslashes(htmlentities($row['nama_ibu']));
-            $array[$i]['alamatayah'] = addslashes(htmlentities($row['alamat_ayah']));
-            $array[$i]['alamatibu'] = addslashes(htmlentities($row['alamat_ibu']));
+            $array[$i]['alamatayah'] = addslashes(htmlentities($row['alamat']));
+            // $array[$i]['alamatibu'] = addslashes(htmlentities($row['alamat_ibu']));
             $array[$i]['noayah'] = addslashes(htmlentities($row['nohp_ayah']));
             $array[$i]['noibu'] = addslashes(htmlentities($row['nohp_ibu']));
             $array[$i]['token'] = addslashes(htmlentities($row['user_token']));

@@ -20,8 +20,18 @@ if ($result->num_rows > 0) {
             $array[$i]['nama'] = addslashes(htmlentities($row['nama']));
             $array[$i]['usertoken'] = addslashes(htmlentities($row['user_token']));
             $array[$i]['tokendevice'] = addslashes(htmlentities($row['token_device']));
+            $array[$i]['status'] = addslashes(htmlentities($row['status']));
         }
-        echo json_encode(array('result' => 'OK', 'data' => $array[$i]['id'], 'role'=>'petugas', 'email'=>$array[$i]['email'], 'pass'=>$array[$i]['password']));
+        if($array[$i]['status']==1)
+        {
+            echo json_encode(array('result' => 'OK', 'data' => $array[$i]['id'], 'role'=>'petugas', 'email'=>$array[$i]['email'], 'pass'=>$array[$i]['password']));
+
+        }
+        else
+        {
+            echo json_encode(array('result'=> 'ERROR', 'message' => 'Akun anda tidak aktif'));
+        }
+       
         // echo json_encode($array);
 } 
 else 
@@ -48,7 +58,7 @@ else
     } 
     else 
     {
-        echo json_encode(array('result'=> 'ERROR', 'message' => 'No data found'));
+        echo json_encode(array('result'=> 'ERROR', 'message' => 'Gagal!Email dan password tidak sesuai.'));
     die();
     }
 }

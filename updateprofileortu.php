@@ -5,10 +5,9 @@ $id = $_POST['id'];
 $namaayah = $_POST['namaayah'];
 $namaibu = $_POST['namaibu'];
 $alamatayah = $_POST['alamatayah'];
-$alamatibu = $_POST['alamatibu'];
 $nohpayah = $_POST['nohpayah'];
 $nohpibu = $_POST['nohpibu'];
-$sql = "UPDATE orangtua set nama_ayah = '$namaayah', nama_ibu ='$namaibu', alamat_ayah = '$alamatayah', alamat_ibu='$alamatibu', nohp_ayah = '$nohpayah', nohp_ibu = '$nohpibu' WHERE id='$id' ";
+$sql = "UPDATE orangtua set nama_ayah = '$namaayah', nama_ibu ='$namaibu', alamat = '$alamatayah', nohp_ayah = '$nohpayah', nohp_ibu = '$nohpibu' WHERE id='$id' ";
 $stmt = $c->prepare ($sql);
 $stmt->execute();
 if($stmt->affected_rows) {
