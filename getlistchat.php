@@ -22,7 +22,8 @@
     GROUP BY orangtua_id
     ) AS b 
     ON o.id = b.orangtua_id
-    GROUP BY a.orangtua_id";
+    GROUP BY a.orangtua_id
+    ORDER BY waktu DESC";
     $stmt = $c->prepare($sql);
     $stmt->execute();
     $result = $stmt->get_result();
