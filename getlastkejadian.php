@@ -13,11 +13,10 @@
   }
     $sql = "SELECT *
     FROM laporankejadian
-    WHERE siswa_id =?
+    WHERE siswa_id IN ($siswaid)
     ORDER BY tanggal DESC
     LIMIT 1";
     $stmt = $c->prepare($sql);
-    $stmt->bind_param("i", $siswaid);
     $stmt->execute();
     $result = $stmt->get_result();
 
