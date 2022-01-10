@@ -23,7 +23,7 @@ else{
 
 if ($c->query($sql) === TRUE) {
     $arr_hasil = array("status"=>true,
-"pesan"=> 'Berhasil Update UID'.$sql);
+"pesan"=> 'Berhasil Update UID');
   } else {
     $arr_hasil = array("status"=>false, 
 "pesan"=>'Gagal Update UID');

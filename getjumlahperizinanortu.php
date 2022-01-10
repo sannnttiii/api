@@ -25,7 +25,7 @@
     $sql = "SELECT count(*) as jumlah
     FROM kegiatanuks k
     INNER JOIN periodeajaran pa ON pa.id = k.periodeajaran_id
-    WHERE k.tanggal_acara >= now()  AND k.perizinan =1
+    WHERE k.tanggal_acara >= CURDATE( ) AND k.perizinan =1
     AND k.kelasajaran_id = (select ks.kelasajaran_id from siswa s 
     inner join kelassiswa ks on ks.siswa_id = s.id 
     where ks.status = 1 and s.id  = ?)  

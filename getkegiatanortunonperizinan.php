@@ -20,7 +20,7 @@
     $sql = "SELECT k. *
     FROM kegiatanuks k
     INNER JOIN jeniskegiatan j ON j.id = k.jeniskegiatan_id
-    WHERE k.tanggal_acara >= now( )
+    WHERE k.tanggal_acara >= CURDATE( )
     AND k.perizinan =0
     AND k.for_all =1
     OR k.perizinan =0

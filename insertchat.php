@@ -14,10 +14,10 @@ $stmt->execute();
 
 if ($stmt->affected_rows > 0) {
   $arr_hasil = array("status"=>true,
-"pesan"=> 'Berhasil'.$sql);
+"pesan"=> 'Berhasil');
 } else {
    $arr_hasil = array("status"=>false, 
-"pesan"=>'Gagal'.$sql);
+"pesan"=>'Gagal');
 }
 echo json_encode($arr_hasil);
 ?>

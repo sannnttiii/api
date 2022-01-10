@@ -5,7 +5,7 @@
     $sql = "SELECT k.*, j.nama as jenis
     FROM kegiatanuks k inner join jeniskegiatan j on j.id = k.jeniskegiatan_id 
     INNER JOIN periodeajaran pa ON pa.id = k.periodeajaran_id
-    WHERE k.tanggal_acara >= now()  
+    WHERE k.tanggal_acara >= CURDATE( )  
     and k.perizinan =1
     AND k.kelasajaran_id in (select ks.kelasajaran_id from siswa s 
     inner join kelassiswa ks on ks.siswa_id = s.id 
@@ -40,7 +40,7 @@
         }
         echo json_encode(array("status" => true, "pesan" => $array));
       } else {
-        echo json_encode(array("status" => false, "pesan" => "Tidak ada data kegiatan yang perlu perizinan"));
+        echo json_encode(array("status" => false, "pesan" => "Tidak ada data kegiatan kelas yang perlu perizinan"));
         die();
       }
 ?>

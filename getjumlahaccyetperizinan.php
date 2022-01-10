@@ -14,21 +14,35 @@ if ($result->num_rows > 0) {
 
 $sql = "SELECT count( * ) AS jumlah
 FROM (
-SELECT s. * , o.user_token AS token, o.token_device as device, ka.id AS kelasid
+
+SELECT s. * , o.user_token AS token, o.token_device AS device, ka.id AS kelasid
 FROM siswa s
 INNER JOIN orangtua o ON o.id = s.orangtua_id
 INNER JOIN kelassiswa ks ON ks.siswa_id = s.id
 INNER JOIN kelasajaran ka ON ka.id = ks.kelasajaran_id
 RIGHT JOIN kegiatanuks ku ON ku.periodeajaran_id = ks.periodeajaran_id
-WHERE ks.periodeajaran_id ='$periode'
+WHERE ks.periodeajaran_id =4
 AND ku.perizinan =1
+AND ku.tanggal_acara >= CURDATE( )
+AND ku.for_all =1
 AND NOT
 EXISTS (
+
 SELECT *
 FROM perizinan p
 WHERE p.siswa_id = s.id
 AND ku.id = p.kegiatanuks_id
-) group by ku.nama, s.id
+)
+OR ks.kelasAjaran_id = ku.kelasAjaran_id
+AND NOT
+EXISTS (
+
+SELECT *
+FROM perizinan p
+WHERE p.siswa_id = s.id
+AND ku.id = p.kegiatanuks_id
+)
+GROUP BY ku.nama, s.id
 ) AS tab";
 $stmt = $c->prepare($sql);
 $stmt->execute();

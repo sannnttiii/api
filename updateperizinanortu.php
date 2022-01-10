@@ -33,10 +33,10 @@ if($ext!=='')
 
 if($stmt->affected_rows>0) {
     $arr_hasil = array("status"=>true,
-    "pesan"=> "Berhasil Konfirmasi Perizinan".$sql);
+    "pesan"=> "Berhasil Konfirmasi Perizinan");
 } else {
     $arr_hasil = array("status"=>false, 
-    "pesan"=>'Gagal konfirmasi perizinan'.$sql);
+    "pesan"=>'Gagal konfirmasi perizinan');
 }
 echo json_encode($arr_hasil);
 

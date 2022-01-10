@@ -52,7 +52,7 @@ $sql = "SELECT k. * , j.nama AS jenis
 FROM kegiatanuks k
 INNER JOIN jeniskegiatan j ON j.id = k.jeniskegiatan_id
 INNER JOIN periodeajaran pa ON pa.id = k.periodeajaran_id
-WHERE k.tanggal_acara >= now( )
+WHERE k.tanggal_acara >= CURDATE( )
 AND k.perizinan =1
 AND k.kelasajaran_id
 IN ( SELECT ks.kelasajaran_id
@@ -86,7 +86,7 @@ if ($result->num_rows > 0) {
   }
   echo json_encode(array("status" => true, "pesan" => $array));
 } else {
-  echo json_encode(array("status" => false, "pesan" => "Tidak ada data kegiatan uks"));
+  echo json_encode(array("status" => false, "pesan" => "Tidak ada data kegiatan uks untuk semua kelas blm acc"));
   die();
 }
 ?>

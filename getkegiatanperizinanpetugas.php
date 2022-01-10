@@ -5,7 +5,7 @@
     FROM kegiatanuks k
     INNER JOIN jeniskegiatan j ON j.id = k.jeniskegiatan_id
     GROUP BY nama, tanggal_acara
-    ORDER BY tanggal_acara DESC";
+    ORDER BY ABS( DATEDIFF( tanggal_acara, CURDATE( ) ) )";
     $stmt = $c->prepare($sql);
     $stmt->execute();
     $result = $stmt->get_result();

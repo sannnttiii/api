@@ -5,7 +5,7 @@
     $sql = "SELECT k. *, j.nama as jenis
     FROM kegiatanuks k inner join jeniskegiatan j on j.id = k.jeniskegiatan_id 
     INNER JOIN periodeajaran pa ON pa.id = k.periodeajaran_id
-    WHERE k.tanggal_acara >= now()
+    WHERE k.tanggal_acara >= CURDATE( )
     and k.perizinan =1
     AND for_all =1
     AND pa.status =1

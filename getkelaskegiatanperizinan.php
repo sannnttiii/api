@@ -15,7 +15,10 @@
   }
 
 
-    $sql = "SELECT k.id, k.nama, k.pelaksana, k.tanggal_acara,k.for_all, ka.kelas as kelas, p.tahunajaran
+    $sql = "SELECT k.id, k.nama, k.pelaksana, k.for_all, ka.kelas as kelas, p.tahunajaran,CASE WHEN k.tanggal_acara <= CURDATE( )
+    THEN 1
+    ELSE 0
+    END AS selesai
     FROM kegiatanuks k inner join periodeajaran p on k.periodeajaran_id = p.id
     LEFT JOIN kelasajaran ka 
     ON k.kelasajaran_id = ka.id where k.nama = '$nama' and k.tanggal_acara = '$tanggal'";
@@ -31,6 +34,7 @@
             $array[$i]['kelas'] = addslashes(htmlentities($row['kelas']));
             $array[$i]['forall'] = addslashes(htmlentities($row['for_all']));
             $array[$i]['periode'] = addslashes(htmlentities($row['tahunajaran']));
+            $array[$i]['selesai'] = addslashes(htmlentities($row['selesai']));
 
             $i++;
         }
